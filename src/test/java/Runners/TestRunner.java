@@ -11,7 +11,7 @@ import org.testng.annotations.DataProvider;
         glue = "StepDefinitions",
         plugin = {
                 "pretty",
-                "html:target/cucumber-reports/cucumber-pretty",
+                "html:target/cucumber-reports/cucumber-pretty.html",
                 "json:target/cucumber-reports/CucumberTestReport.json",
                 "timeline:target/test-output-thread/"
     }

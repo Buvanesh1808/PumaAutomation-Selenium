@@ -1,5 +1,6 @@
 package PageObjects;
 
+import Utilities.Wait;
 import net.jodah.failsafe.internal.util.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -46,20 +47,17 @@ public class Payment {
         CreditCard_Radio_btn.isDisplayed();
         CreditCard_Radio_btn.click();
         CardHolder_Name.sendKeys("Buvanesh");
-        webDriver.switchTo().frame(CardNumber_Iframe);
+        webDriver.switchTo().frame(0);
         CardNumber.sendKeys("378282246310005");
         webDriver.switchTo().defaultContent();
-        webDriver.switchTo().frame(ExpiryDate_Iframe);
+        webDriver.switchTo().frame(1);
         Card_ExpiryDate.sendKeys("0523");
         webDriver.switchTo().defaultContent();
-        webDriver.switchTo().frame(CVV_Iframe);
+        webDriver.switchTo().frame(2);
         CVV.sendKeys("123");
         webDriver.switchTo().defaultContent();
         PlaceOrder.click();
-
-
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("span[data-test-id='payment-form-error']")));
-//        WebElement Payment_Error_Msg = driver.findElement(By.cssSelector("span[data-test-id='payment-form-error']"));
-//        Assert.assertEquals(Payment_Error_Msg.getText(), "Sorry, something went wrong with your payment. Please try a different payment method or contact your payments provider. If issue continues you can contact customer service.");
+        Wait.untilElementIsVisible(webDriver,Payment_Error_Msg,10000);
+//         Assert.(Payment_Error_Msg.getText(), "Sorry, something went wrong with your payment. Please try a different payment method or contact your payments provider. If issue continues you can contact customer service.");
     }
 }

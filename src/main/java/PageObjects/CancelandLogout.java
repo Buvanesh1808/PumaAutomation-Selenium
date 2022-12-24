@@ -1,5 +1,6 @@
 package PageObjects;
 
+import net.jodah.failsafe.internal.util.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,7 +15,7 @@ public class CancelandLogout {
         PageFactory.initElements(webDriver, this);
     }
 
-    @FindBy(css = "a[data-test-id='checkout-breadcrumb-0']")
+    @FindBy(css = "a[data-test-id='checkout-breadcrumb-0'] span")
     public WebElement GoToCart;
 
     @FindBy(css = "button[data-test-id='remove-product-button']")
@@ -35,7 +36,7 @@ public class CancelandLogout {
     @FindBy(css = "button[data-test-id='logout-button']")
     public WebElement Logout;
 
-    public void cancelAndLogout() {
+    public void cancelProduct() {
         GoToCart.click();
         Remove_Product.click();
         Remove_Item_Model.isDisplayed();

@@ -1,15 +1,16 @@
 package PageObjects;
 
+import Utilities.Wait;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class Checkout {
     private final WebDriver webDriver;
-
     public Checkout(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(new AjaxElementLocatorFactory(webDriver, 25), this);
@@ -54,24 +55,8 @@ public class Checkout {
 
 
     public void checkOut() {
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("a[data-test-id='cart-summary-checkout']")));
+        Wait.untilElementIsVisible(webDriver,Checkout_btn,10000);
         Checkout_btn.click();
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[data-test-id='shipping-address-first-name']")));
-        FirstName.clear();
-        FirstName.sendKeys("Buvanesh");
-        LastName.clear();
-        LastName.sendKeys("S");
-        PinCode.sendKeys("642134");
-        Street.clear();
-        Street.sendKeys("123, Test");
-        Address2.clear();
-        Address2.sendKeys("RamNagar, Chennai");
-        City.clear();
-        City.sendKeys("Pollachi");
-        Checkout_Email.clear();
-        Checkout_Email.sendKeys("Testingpuma@gmail.com");
-        PhoneNumber.clear();
-        PhoneNumber.sendKeys("+918632546985");
-        ContinuetoPay.click();
+
      }
 }

@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+
+
 import java.util.List;
 
 public class CustomiseProduct {
@@ -35,40 +37,15 @@ public class CustomiseProduct {
             String value = Sizes.getText();
             if (value.equals(Size)) {
                 webDriver.findElement(By.xpath("//button[contains(text(),'" + Size + "')]")).click();
-                break;
             }
         }
     }
-
-    public void selectColours(String Colours){
+    public void selectColours(List<String> datatable){
         ShoeColour_Filter.click();
-        for (WebElement Colour : All_Colours) {
-            String value = Colour.getText();
-            String val1 = value.replaceAll("\\d", "").replaceAll("\\(", "").replaceAll("\\)", "").trim();
-            if (val1.equalsIgnoreCase(Colours)) {
-                webDriver.findElement(By.xpath("//div[@data-test-id='color-filter-values']/button[@data-value='" + Colours + "']")).click();
-                break;
-            }
+        for (String colour : datatable) {
+            String value = colour.toLowerCase();
+            webDriver.findElement(By.xpath("//div[@data-test-id='color-filter-values']/button[@data-value='" + value + "']")).click();
         }
     }
 
-//    public void customizeProduct(String Size, String Colours) {
-//        ShoeSize_Filter.click();
-//        for (WebElement Sizes : All_Sizes) {
-//            String value = Sizes.getText();
-//            if (value.equals(Size)) {
-//                webDriver.findElement(By.xpath("//button[contains(text(),'" + Size + "')]")).click();
-//                break;
-//            }
-//        }
-//        ShoeColour_Filter.click();
-//        for (WebElement Colour : All_Colours) {
-//            String value = Colour.getText();
-//            String val1 = value.replaceAll("\\d", "").replaceAll("\\(", "").replaceAll("\\)", "").trim();
-//            if (val1.equalsIgnoreCase(Colours)) {
-//                webDriver.findElement(By.xpath("//div[@data-test-id='color-filter-values']/button[@data-value='" + Colours + "']")).click();
-//                break;
-//            }
-//        }
-//    }
 }

@@ -3,6 +3,7 @@ package PageObjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -35,7 +36,11 @@ public class ShoeSelection {
         for (WebElement Shoes : All_Shoes) {
             String value = Shoes.getAttribute("aria-label");
             if (value.contains(ShoeName)) {
-                webDriver.findElement(By.xpath("//ul[@id='product-list-items']/li//a[contains(@aria-label,'" + ShoeName + "')]")).click();
+                WebElement Shoe = webDriver.findElement(By.xpath("//ul[@id='product-list-items']/li//a[contains(@aria-label,'" + ShoeName + "')]"));
+                Actions action = new Actions(webDriver);
+                action.moveToElement(Shoe).build().perform();
+                Shoe.click();
+//                webDriver.findElement(By.xpath("//ul[@id='product-list-items']/li//a[contains(@aria-label,'" + ShoeName + "')]")).click();
                 break;
             }
         }

@@ -1,5 +1,6 @@
 package PageObjects;
 
+import Utilities.Wait;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,7 +16,8 @@ public class ProductSelection {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this);
     }
-
+    @FindBy(css = "button[data-test-id='account-logout-button']")
+    public WebElement Account_Page;
     @FindBy(xpath = "//a[@data-link-name='Men']/ancestor::div[2]")
     public WebElement Men;
 
@@ -23,9 +25,11 @@ public class ProductSelection {
     public WebElement RunningShoes;
 
     public void productSelection() {
-
         Actions action = new Actions(webDriver);
         action.moveToElement(Men).build().perform();
         action.moveToElement(RunningShoes).click().build().perform();
+    }
+    public void waitForAccount(){
+        Wait.untilElementIsVisible(webDriver,Account_Page,15000);
     }
 }

@@ -2,7 +2,10 @@ package StepDefinitions;
 
 import PageObjects.CustomiseProduct;
 import Utilities.TestContext;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
+
+import java.util.List;
 
 
 public class CustomizeProductSteps {
@@ -20,14 +23,13 @@ public class CustomizeProductSteps {
 //        customiseProduct.customizeProduct("10", "gray");
     }
 
-    @And("I Filter the Shoe Size as {string}")
+    @And("I filter the shoe size as {string}")
     public void iFilterTheShoeSizeAs(String Shoe_size) {
         customiseProduct.selectSize(Shoe_size);
-
     }
-
-    @And("I Filter the Shoe Colour as {string}")
-    public void iFilterTheShoeColourAs(String Shoe_Colours) {
-        customiseProduct.selectColours(Shoe_Colours);
+    @And("I Filter the Shoe Colour as below")
+    public void iFilterTheShoeColourAs(DataTable dataTable) {
+        List<String> values = dataTable.asList();
+        customiseProduct.selectColours(values);
     }
 }

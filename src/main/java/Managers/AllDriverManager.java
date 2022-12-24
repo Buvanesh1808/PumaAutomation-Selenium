@@ -3,20 +3,28 @@ package Managers;
 import Enums.DriverType;
 import Enums.EnvironmentType;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.safari.SafariDriver;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class AllDriverManager {
 
-    private WebDriver webDriver;
+    public WebDriver webDriver;
     private static DriverType driverType;
     private static EnvironmentType environmentType;
 
@@ -45,7 +53,9 @@ public class AllDriverManager {
                 break;
             case EDGE:
                 WebDriverManager.edgedriver().setup();
-                webDriver = new EdgeDriver();
+                EdgeOptions edgeOptions = new EdgeOptions();
+                edgeOptions.addArguments("--start-maximized");
+                webDriver = new EdgeDriver(edgeOptions);
                 break;
             case SAFARI:
                 webDriver = new SafariDriver();
@@ -84,4 +94,5 @@ public class AllDriverManager {
         webDriver.close();
         webDriver.quit();
     }
+
 }

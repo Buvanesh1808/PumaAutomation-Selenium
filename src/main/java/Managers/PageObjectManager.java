@@ -19,7 +19,7 @@ public class PageObjectManager {
         this.webDriver = webDriver;
     }
 
-    public PumaLoginPage getPumaLoginPage() {
+      public PumaLoginPage getPumaLoginPage() {
         return (pumaLoginPage == null) ? pumaLoginPage = new PumaLoginPage(webDriver) : pumaLoginPage;
     }
     public ProductSelection productSelection() {
