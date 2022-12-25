@@ -5,7 +5,7 @@ Feature: Automating the Puma Application
     And I wait for Account page to be visible
     Then I navigate to Running Shoe section
     And I filter the shoe size as "<Shoe_Size>"
-    And I Filter the Shoe Colour as below
+    And I filter the shoe colour's as below
       | Blue  |
       | White |
       | Black |
@@ -13,10 +13,10 @@ Feature: Automating the Puma Application
       | Green |
       | Red   |
     Then I select the Shoe as "<Shoe_Name>"
-    Then I Click on "AddToCart" Button
+    Then I click on "AddToCart" Button
     And I verify shoe name is displayed as "Twitch Runner Unisex Running Shoes"
     And I click on Proceed the Checkout
-    Then I Fill the Shipping Address details as below
+    Then I fill the Shipping Address details as below
       | FirstName   | Buvanesh              |
       | LastName    | S                     |
       | PinCode     | 642134                |
@@ -26,8 +26,9 @@ Feature: Automating the Puma Application
       | Email       | Testingpuma@gmail.com |
       | PhoneNumber | +918632546985         |
     Then I fill the CreditCard details for Payment
+    And I click on continue to Pay Button
     And I cancel the Product
-    And I Verify the Cart is Empty Message displayed as "Your Shopping Cart is Empty"
+    And I verify the cart is empty message displayed as "Your Shopping Cart is Empty"
     Then I Logout the Puma application
 
     Examples:

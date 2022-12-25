@@ -3,6 +3,7 @@ package PageObjects;
 import Utilities.Wait;
 import net.jodah.failsafe.internal.util.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -14,6 +15,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class Payment {
 
     private final WebDriver webDriver;
+
 
     public Payment(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -47,17 +49,21 @@ public class Payment {
         CreditCard_Radio_btn.isDisplayed();
         CreditCard_Radio_btn.click();
         CardHolder_Name.sendKeys("Buvanesh");
-        webDriver.switchTo().frame(0);
-        CardNumber.sendKeys("378282246310005");
-        webDriver.switchTo().defaultContent();
-        webDriver.switchTo().frame(1);
-        Card_ExpiryDate.sendKeys("0523");
-        webDriver.switchTo().defaultContent();
-        webDriver.switchTo().frame(2);
-        CVV.sendKeys("123");
-        webDriver.switchTo().defaultContent();
+//        webDriver.switchTo().frame(0);
+        JavascriptExecutor js = (JavascriptExecutor) webDriver;
+//        js.executeScript("document.getElementById('encryptedCardNumber').value='378282246310005';");
+        js.executeScript("arguments[0].value='0523'",Card_ExpiryDate);
+        js.executeScript("arguments[0].value='123'",CVV);
+//        CardNumber.sendKeys("378282246310005");
+//        webDriver.switchTo().defaultContent();
+//        webDriver.switchTo().frame(1);
+//        Card_ExpiryDate.sendKeys("0523");
+//        webDriver.switchTo().defaultContent();
+//        webDriver.switchTo().frame(2);
+//        CVV.sendKeys("123");
+//        webDriver.switchTo().defaultContent();
+        Wait.untilElementIsVisible(webDriver,PlaceOrder,10000);
         PlaceOrder.click();
-        Wait.untilElementIsVisible(webDriver,Payment_Error_Msg,10000);
-//         Assert.(Payment_Error_Msg.getText(), "Sorry, something went wrong with your payment. Please try a different payment method or contact your payments provider. If issue continues you can contact customer service.");
+        Wait.untilElementIsVisible(webDriver, Payment_Error_Msg, 10000);
     }
 }

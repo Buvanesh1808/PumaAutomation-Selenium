@@ -5,15 +5,17 @@ import Utilities.TestContext;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
+import javax.swing.*;
+import java.io.IOException;
 import java.util.Map;
 import java.util.function.BiConsumer;
 
 public class CheckOutSteps {
 
     TestContext testContext;
-
     Checkout checkout;
 
     public CheckOutSteps(TestContext context) {
@@ -29,10 +31,9 @@ public class CheckOutSteps {
     @And("I click on Proceed the Checkout")
     public void iClickOnProceedTheCheckout() {
         checkout.checkOut();
-
     }
 
-    @Then("I Fill the Shipping Address details as below")
+    @Then("I fill the Shipping Address details as below")
     public void iFillTheShippingAddressDetailsAsBelow(Map<String, String> formdata) throws Throwable {
         fillForm(formdata, this::fillShippingAddress);
         checkout.ContinuetoPay.click();
@@ -81,5 +82,10 @@ public class CheckOutSteps {
             default:
                 System.out.println("Given label is not found");
         }
+    }
+
+    @And("I click on continue to Pay Button")
+    public void iClickOnContinueToPayButton() {
+        checkout.clickPayment();
     }
 }

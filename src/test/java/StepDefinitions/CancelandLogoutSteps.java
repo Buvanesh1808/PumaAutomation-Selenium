@@ -6,6 +6,8 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.testng.Assert;
 
+import java.io.IOException;
+
 public class CancelandLogoutSteps {
 
     TestContext testContext;
@@ -24,9 +26,8 @@ public class CancelandLogoutSteps {
     public void iLogoutThePumaApplication() {
         cancelandLogout.logout();
     }
-
-    @And("I Verify the Cart is Empty Message displayed as {string}")
+    @And("I verify the cart is empty message displayed as {string}")
     public void iVerifyTheCartIsEmptyMessageDisplayedAs(String errMsg) {
-        Assert.assertEquals(cancelandLogout.Cart_Empty_Msg.getText(),errMsg);
+        Assert.assertEquals(cancelandLogout.Cart_Empty_Msg.getText(), errMsg);
     }
 }

@@ -30,7 +30,7 @@ public class PumaLoginSteps {
     @Given("I login the Puma application")
     public void iLoginThePumaApplication() throws IOException {
         pumaLoginPage.login();
-        captureScreenshot("I login the Puma application",".jpg");
+//        captureScreenshot("Login_puma_app",".jpg");
 
     }
     public void captureScreenshot(String fileName,String extension) throws IOException {

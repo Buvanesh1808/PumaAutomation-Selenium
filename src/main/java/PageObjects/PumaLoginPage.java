@@ -1,21 +1,11 @@
 package PageObjects;
 
-
-import Managers.AllDriverManager;
 import Utilities.Wait;
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
-
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class PumaLoginPage {
     private final WebDriver webDriver;
@@ -53,10 +43,10 @@ public class PumaLoginPage {
     public WebElement CookiePopup_Close;
 
 
-    public void login() throws IOException {
-        if (Additional_Popup.isDisplayed()) {
-            Pop_up_close.click();
-        }
+    public void login() {
+//        if (Additional_Popup.isDisplayed()) {
+//            Pop_up_close.click();
+//        }
         if (CookiePopup_Close.isDisplayed()) {
             CookiePopup_Close.click();
         }
@@ -67,10 +57,5 @@ public class PumaLoginPage {
         Password.sendKeys("Puma@2022");
         SignIn_btn.click();
         Wait.untilElementIsVisible(webDriver, Account_btn, 15000);
-
     }
-
-
-
-
 }

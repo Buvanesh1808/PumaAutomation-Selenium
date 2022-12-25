@@ -15,7 +15,7 @@ public class ShoeSelectionSteps {
         shoeSelection =testContext.getPageObjectManager().shoeSelection();
     }
 
-    @Then("I Click on {string} Button")
+    @Then("I click on {string} Button")
     public void iClickOnButton(String button) {
         shoeSelection.click();
     }

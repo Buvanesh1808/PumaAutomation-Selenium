@@ -3,6 +3,7 @@ package PageObjects;
 import Utilities.Wait;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
@@ -11,6 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Checkout {
     private final WebDriver webDriver;
+
     public Checkout(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(new AjaxElementLocatorFactory(webDriver, 25), this);
@@ -53,10 +55,18 @@ public class Checkout {
     public WebElement ContinuetoPay;
 
 
-
     public void checkOut() {
-        Wait.untilElementIsVisible(webDriver,Checkout_btn,10000);
+        Wait.untilElementIsVisible(webDriver, Checkout_btn, 10000);
+        Actions action = new Actions(webDriver);
+        action.moveToElement(Checkout_btn).build().perform();
         Checkout_btn.click();
+    }
 
-     }
+    public void clickPayment() {
+        Wait.untilElementIsVisible(webDriver, ContinuetoPay, 10000);
+        Actions action = new Actions(webDriver);
+        action.moveToElement(ContinuetoPay);
+        ContinuetoPay.clear();
+
+    }
 }

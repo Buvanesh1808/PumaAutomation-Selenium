@@ -5,6 +5,7 @@ import Utilities.TestContext;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -18,16 +19,11 @@ public class CustomizeProductSteps {
         customiseProduct = testContext.getPageObjectManager().customiseProduct();
     }
 
-    @And("I customize my Shoe Colour and Size")
-    public void iCustomizeMyShoeColourAndSize() {
-//        customiseProduct.customizeProduct("10", "gray");
-    }
-
     @And("I filter the shoe size as {string}")
     public void iFilterTheShoeSizeAs(String Shoe_size) {
         customiseProduct.selectSize(Shoe_size);
     }
-    @And("I Filter the Shoe Colour as below")
+    @And("I filter the shoe colour's as below")
     public void iFilterTheShoeColourAs(DataTable dataTable) {
         List<String> values = dataTable.asList();
         customiseProduct.selectColours(values);
