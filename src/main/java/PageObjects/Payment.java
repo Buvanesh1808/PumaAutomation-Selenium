@@ -51,7 +51,7 @@ public class Payment {
         CardHolder_Name.sendKeys("Buvanesh");
 //        webDriver.switchTo().frame(0);
         JavascriptExecutor js = (JavascriptExecutor) webDriver;
-//        js.executeScript("document.getElementById('encryptedCardNumber').value='378282246310005';");
+        js.executeScript("document.getElementById('encryptedCardNumber').value='378282246310005';");
         js.executeScript("arguments[0].value='0523'",Card_ExpiryDate);
         js.executeScript("arguments[0].value='123'",CVV);
 //        CardNumber.sendKeys("378282246310005");
